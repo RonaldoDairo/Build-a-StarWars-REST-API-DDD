@@ -7,13 +7,27 @@ class User(db.Model):
     email = db.Column(db.String(120), unique=True, nullable=False)
     password = db.Column(db.String(80), unique=False, nullable=False)
     is_active = db.Column(db.Boolean(), unique=False, nullable=False)
+    username = db.Column(db.String(150), unique=True, nullable=False)
+    
+    def __init__(self,email,password,username):
+        self.email = email
+        self.password = password
+        self.username = username
+        self.is_active = True
 
-    def __repr__(self):
-        return '<User %r>' % self.username
-
+  
     def serialize(self):
         return {
             "id": self.id,
             "email": self.email,
+            "username": self.username,
+            "active":self.is_active
             # do not serialize the password, its a security breach
         }
+
+
+class People(db.Model):
+    id= db.Column(db.Integer, primary_key=True)
+    username_person = db.Column(db.String(40), unique=True, nullable=False)
+    history_person = db.Column(db.String(255), unique=False, nullable=False)
+# this only runs if `$ python src/app.py` is executed
