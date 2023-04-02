@@ -8,7 +8,7 @@ from flask_swagger import swagger
 from flask_cors import CORS
 from utils import APIException, generate_sitemap
 from admin import setup_admin
-from models import db, User, People, Planets
+from models import db, User, People, Planets, Vehicles
 #from models import Person
 
 app = Flask(__name__)
@@ -72,8 +72,8 @@ def create_person():
     db.session.add(new_person)
     db.session.commit()
     print('new_person ******', new_person)
-    return jsonify(new_person.serialize())
-#******************************************PLANETS
+    return jsonify(new_person.serialize()),200
+#******************************************PLANETS********************************************************
 @app.route('/planets', methods= ['POST'])
 def create_planet():
     data = (request.get_json())
@@ -84,7 +84,17 @@ def create_planet():
     db.session.commit()
     print('new_planet ****', new_planet)
     return jsonify(new_planet.serialize())
-
+#**************************************VEHICLE***********************************************************
+@app.route('/vehicles', methods=['POST'])
+def create_vehicle():
+    data = (request.get_json())
+    print('data  del vehicle*******', data)
+    new_vecicle = Vehicles(data['description'], data['history'], data['model'], data['year'], data['vehicles_id'] )
+    print('new_vehicle ******', new_vecicle)
+    db.session.add(new_vecicle)
+    db.session.commit()
+    print('new_vehicle ******', new_vecicle)
+    return jsonify(new_vecicle.serialize())
 # this only runs if `$ python src/app.py` is executed
 if __name__ == '__main__':
     PORT = int(os.environ.get('PORT', 3000))

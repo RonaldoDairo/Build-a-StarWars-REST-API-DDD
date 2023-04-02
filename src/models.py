@@ -71,7 +71,7 @@ class Planets(db.Model):
     description = db.Column(db.String(200),unique=False, nullable=False)
     history =db.Column(db.String(250), unique=False, nullable = False)
     tipes = db.Column(db.String(250), unique=False, nullable = False)
-    people_id= db.Column(db.Integer, )
+    people_id= db.Column(db.Integer)
     # db.ForeignKey('people.id')
     # people = db.relationship('People', back_populates='planets')
 
@@ -82,13 +82,43 @@ class Planets(db.Model):
         self.people_id = people_id
         
     def serialize(self):
-        return{
+        return{ 
             "id": self.id,
             "description": self.description,
-            "history": self.history_person,
+            "history": self.history,
             "tipes" : self.tipes,
             "people_id" : self.people_id,
             # "user": self.people.serialize()
+        }
+    def serialize_populate(self):
+        return{
+            "id": self.id,
+            "description": self.description
+        }
+#**********************************************VEHICLE****************************************
+class Vehicles(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    description = db.Column(db.String(200),unique=False, nullable=False)
+    history =db.Column(db.String(200), unique=False, nullable = False)
+    model= db.Column(db.String(200), unique=False, nullable = False)
+    year = db.Column(db.String(100), unique=False, nullable= False) 
+    vehicles_id = db.Column(db.Integer)
+
+    def __init__(self, description, history, model, year, vehicles_id):
+        self.description = description
+        self.history = history
+        self.model = model
+        self.year = year
+        self.vehicles_id = vehicles_id
+    
+    def serialize(self):
+        return{
+            "id" : self.id,
+            "description" : self.description,
+            "history" : self.history,
+            "model" : self.model,
+            "year": self.year,
+            "vehicles_id" : self.vehicles_id
         }
     def serialize_populate(self):
         return{
