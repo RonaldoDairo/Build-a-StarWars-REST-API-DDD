@@ -40,7 +40,8 @@ class People(db.Model):
     description = db.Column(db.String(200),unique=False, nullable=False)
     user_id= db.Column(db.Integer, db.ForeignKey('user.id'))
     user = db.relationship('User', back_populates='people')
-    
+    # planets = db.relationship('Planets', back_populates='people')
+   
     def __init__(self, username, history_person, description, user_id):
         self.username = username
         self.history_person = history_person
@@ -54,7 +55,8 @@ class People(db.Model):
             "history": self.history_person,
             "description": self.description,
             "user_id" : self.user_id,
-            "user": self.user.serialize()
+            "user": self.user.serialize(),
+            # "planets": list(map(lambda planets: planets.serialize_populate(), self.planets))
         }
     def serialize_populate(self):
         return{
@@ -73,24 +75,24 @@ class Planets(db.Model):
     # db.ForeignKey('people.id')
     # people = db.relationship('People', back_populates='planets')
 
-    # def __init__(self, description, history, tipes, people_id ):
-    #     self.description= description
-    #     self.history = history
-    #     self.tipes = tipes
-    #     self.people_id = people_id
+    def __init__(self, description, history, tipes, people_id ):
+        self.description= description
+        self.history = history
+        self.tipes = tipes
+        self.people_id = people_id
         
-    # def serialize(self):
-    #     return{
-    #         "id": self.id,
-    #         "description": self.description,
-    #         "history": self.history_person,
-    #         "tipes" : self.tipes,
-    #         "people_id" : self.people_id,
-    #         # "user": self.people.serialize()
-    #     }
-    # def serialize_populate(self):
-    #     return{
-    #         "id": self.id,
-    #         "description": self.description
-    #     }
+    def serialize(self):
+        return{
+            "id": self.id,
+            "description": self.description,
+            "history": self.history_person,
+            "tipes" : self.tipes,
+            "people_id" : self.people_id,
+            # "user": self.people.serialize()
+        }
+    def serialize_populate(self):
+        return{
+            "id": self.id,
+            "description": self.description
+        }
 # this only runs if `$ python src/app.py` is executed

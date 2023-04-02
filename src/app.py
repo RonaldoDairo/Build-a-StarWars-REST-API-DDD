@@ -74,16 +74,16 @@ def create_person():
     print('new_person ******', new_person)
     return jsonify(new_person.serialize())
 #******************************************PLANETS
-# @app.route('/planets', methods= ['POST'])
-# def create_planet():
-#     data = (request.get_json())
-#     print('data del planet  ******', data)
-#     new_planet= Planets(data['description'], data['history'], data['tipes'], data['people_id'] )
-#     print('new_planet ****', new_planet)
-#     db.session.add(new_planet)
-#     db.session.commit()
-#     print('new_planet ****', new_planet)
-#     return jsonify(new_planet.serialize())
+@app.route('/planets', methods= ['POST'])
+def create_planet():
+    data = (request.get_json())
+    print('data del planet  ******', data)
+    new_planet= Planets(data['description'], data['history'], data['tipes'], data['people_id'] )
+    print('new_planet ****', new_planet)
+    db.session.add(new_planet)
+    db.session.commit()
+    print('new_planet ****', new_planet)
+    return jsonify(new_planet.serialize())
 
 # this only runs if `$ python src/app.py` is executed
 if __name__ == '__main__':
