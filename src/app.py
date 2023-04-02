@@ -8,7 +8,7 @@ from flask_swagger import swagger
 from flask_cors import CORS
 from utils import APIException, generate_sitemap
 from admin import setup_admin
-from models import db, User, People
+from models import db, User, People, Planets
 #from models import Person
 
 app = Flask(__name__)
@@ -35,7 +35,7 @@ def handle_invalid_usage(error):
 @app.route('/')
 def sitemap():
     return generate_sitemap(app)
-
+#******************************** USER
 @app.route('/user', methods=['GET'])
 def handle_hello():
     all_user = User.query.all()
@@ -50,11 +50,8 @@ def handle_hello():
 def get_user(id):
     print(id)
     user = User.query.get(id)
-    print(user)
-    return jsonify(user.serialize()),200
-
-
-
+    user_serialize = user.serialize()
+    return jsonify(user.serialize),200
 
 @app.route('/user', methods=['POST'])
 def create_user():
@@ -65,9 +62,7 @@ def create_user():
     print(new_user)
     print(request.get_json())
     return jsonify("Hola Soy El Post "),200
-
-
-
+#***************************************PEOPLE
 @app.route('/people', methods=['POST'])
 def create_person():
     data = (request.get_json())
@@ -78,6 +73,17 @@ def create_person():
     db.session.commit()
     print('new_person ******', new_person)
     return jsonify(new_person.serialize())
+#******************************************PLANETS
+# @app.route('/planets', methods= ['POST'])
+# def create_planet():
+#     data = (request.get_json())
+#     print('data del planet  ******', data)
+#     new_planet= Planets(data['description'], data['history'], data['tipes'], data['people_id'] )
+#     print('new_planet ****', new_planet)
+#     db.session.add(new_planet)
+#     db.session.commit()
+#     print('new_planet ****', new_planet)
+#     return jsonify(new_planet.serialize())
 
 # this only runs if `$ python src/app.py` is executed
 if __name__ == '__main__':
