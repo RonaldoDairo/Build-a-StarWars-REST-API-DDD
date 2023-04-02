@@ -51,7 +51,7 @@ def get_user(id):
     print(id)
     user = User.query.get(id)
     user_serialize = user.serialize()
-    return jsonify(user.serialize),200
+    return jsonify(user_serialize),200
 
 @app.route('/user', methods=['POST'])
 def create_user():
@@ -62,7 +62,25 @@ def create_user():
     print(new_user)
     print(request.get_json())
     return jsonify("Hola Soy El Post "),200
-#***************************************PEOPLE
+#***************************************PEOPLE**************************************************************
+@app.route('/people', methods=['GET'])
+def get_all_people():
+    all_people = People.query.all()
+    # another form to do it 
+    # serialize_all_user = [user.serialize() for user in all_user]
+    serialize_all_people = list(map(lambda people : people.serialize(), all_people))
+    print(all_people)
+    return jsonify(serialize_all_people), 200
+
+# para obtener informacion por id , solo exite para obtenes datos
+# en concreto id y string
+@app.route('/people/<int:id>', methods=['GET'])
+def get_people(id):
+    print(id)
+    people = People.query.get(id)
+    people_serialize = people.serialize()
+    return jsonify(people_serialize),200
+
 @app.route('/people', methods=['POST'])
 def create_person():
     data = (request.get_json())
@@ -89,12 +107,12 @@ def create_planet():
 def create_vehicle():
     data = (request.get_json())
     print('data  del vehicle*******', data)
-    new_vecicle = Vehicles(data['description'], data['history'], data['model'], data['year'], data['vehicles_id'] )
-    print('new_vehicle ******', new_vecicle)
-    db.session.add(new_vecicle)
+    new_vehicle = Vehicles(data['description'], data['history'], data['model'], data['year'], data['vehicles_id'] )
+    print('new_vehicle ******', new_vehicle)
+    db.session.add(new_vehicle)
     db.session.commit()
-    print('new_vehicle ******', new_vecicle)
-    return jsonify(new_vecicle.serialize())
+    print('new_vehicle ******', new_vehicle)
+    return jsonify(new_vehicle.serialize())
 # this only runs if `$ python src/app.py` is executed
 if __name__ == '__main__':
     PORT = int(os.environ.get('PORT', 3000))

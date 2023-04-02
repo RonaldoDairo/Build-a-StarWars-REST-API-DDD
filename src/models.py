@@ -101,7 +101,7 @@ class Vehicles(db.Model):
     description = db.Column(db.String(200),unique=False, nullable=False)
     history =db.Column(db.String(200), unique=False, nullable = False)
     model= db.Column(db.String(200), unique=False, nullable = False)
-    year = db.Column(db.String(100), unique=False, nullable= False) 
+    year = db.Column(db.String(200), unique=False, nullable= False) 
     vehicles_id = db.Column(db.Integer)
 
     def __init__(self, description, history, model, year, vehicles_id):
@@ -125,4 +125,5 @@ class Vehicles(db.Model):
             "id": self.id,
             "description": self.description
         }
+
 # this only runs if `$ python src/app.py` is executed
