@@ -44,17 +44,40 @@ def handle_hello():
     serialize_all_user = list(map(lambda user : user.serialize(), all_user))
     print(all_user)
     return jsonify(serialize_all_user), 200
- 
+ # para obtener informacion por id , solo exite para obtenes datos
+ # en concreto id y string
+@app.route('/user/<int:id>', methods=['GET'])
+def get_user(id):
+    print(id)
+    user = User.query.get(id)
+    print(user)
+    return jsonify(user.serialize()),200
+
+
+
+
 @app.route('/user', methods=['POST'])
-def create_person():
+def create_user():
     data = (request.get_json())
     new_user= User(data['email'], data['password'], data['username'])
     db.session.add(new_user)
     db.session.commit()
     print(new_user)
     print(request.get_json())
-    return jsonify("Hola Soy El Post "()),200
-    
+    return jsonify("Hola Soy El Post "),200
+
+
+
+@app.route('/people', methods=['POST'])
+def create_person():
+    data = (request.get_json())
+    print('data del  ******', data)
+    new_person = People(data['username'], data['history'], data['description'], data['user_id'])
+    print('new_person ******', new_person)
+    db.session.add(new_person)
+    db.session.commit()
+    print('new_person ******', new_person)
+    return jsonify(new_person.serialize())
 
 # this only runs if `$ python src/app.py` is executed
 if __name__ == '__main__':
