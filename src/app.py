@@ -92,6 +92,23 @@ def create_person():
     print('new_person ******', new_person)
     return jsonify(new_person.serialize()),200
 #******************************************PLANETS********************************************************
+@app.route('/planets', methods=['GET'])
+def get_all_planets():
+    all_planets = Planets.query.all()
+    # another form to do it 
+    # serialize_all_planets = [user.serialize() for user in all_planets]
+    serialize_all_planets = list(map(lambda planet : planet.serialize(), all_planets))
+    print(all_planets)
+    return jsonify(serialize_all_planets), 200
+ # para obtener informacion por id , solo exite para obtenes datos
+ # en concreto id y string
+@app.route('/planets/<int:id>', methods=['GET'])
+def get_planets(id):
+    print(id)
+    planets = Planets.query.get(id)
+    planets_serialize = planets.serialize()
+    return jsonify(planets_serialize),200
+
 @app.route('/planets', methods= ['POST'])
 def create_planet():
     data = (request.get_json())
@@ -103,6 +120,22 @@ def create_planet():
     print('new_planet ****', new_planet)
     return jsonify(new_planet.serialize())
 #**************************************VEHICLE***********************************************************
+@app.route('/vehicles', methods=['GET'])
+def get_all_vehicles():
+    all_vehicles = Vehicles.query.all()
+    # another form to do it 
+    # serialize_all_vehicles = [user.serialize() for user in all_planets]
+    serialize_all_vehicles = list(map(lambda vehicle : vehicle.serialize(), all_vehicles))
+    print(all_vehicles)
+    return jsonify(serialize_all_vehicles), 200
+ # para obtener informacion por id , solo exite para obtenes datos
+ # en concreto id y string
+@app.route('/vehicles/<int:id>', methods=['GET'])
+def get_vehicles(id):
+    print(id)
+    vehicles = Vehicles.query.get(id)
+    vehicles_serialize = vehicles.serialize()
+    return jsonify(vehicles_serialize),200
 @app.route('/vehicles', methods=['POST'])
 def create_vehicle():
     data = (request.get_json())
