@@ -2,11 +2,11 @@ from models.db import db
 
 class Vehicles(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    passengers = db.Column(db.Integer,unique=False, nullable=False)
-    length = db.Column(db.Integer, unique=False, nullable = False)
+    passengers = db.Column(db.String(200),unique=False, nullable=False)
+    length = db.Column(db.String(200), unique=False, nullable = False)
     model= db.Column(db.String(200), unique=False, nullable = False)
     year = db.Column(db.String(200), unique=False, nullable= False) 
-    cargo_capacity = db.Column(db.Integer,unique=False, nullable= False)
+    cargo_capacity = db.Column(db.String(200),unique=False, nullable= False)
 
     def __init__(self, passengers, length, model, year, cargo_capacity):
         self.passengers = passengers
