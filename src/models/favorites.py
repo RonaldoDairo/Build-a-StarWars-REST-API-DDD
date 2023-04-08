@@ -27,7 +27,7 @@ class Favorites(db.Model):
         "user_id_planets" : self.user_id_planets,
         "user_id_vehicles" : self.user_id_vehicles,
         }
-
+    
 
         
 

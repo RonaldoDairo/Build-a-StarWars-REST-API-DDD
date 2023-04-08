@@ -22,7 +22,7 @@ class User(db.Model):
         "email": self.email,
         "username": self.username,
         "active":self.is_active,
-        "people": list(map(lambda people: people.serialize_populate(), self.people))
+        # "people": list(map(lambda people: people.serialize_populate(), self.people))
         # do not serialize the password, its a security breach
         }
     def serialize_populate(self):
