@@ -13,4 +13,4 @@ def create_favorite_person(data):
     db.session.add(new_person)
     db.session.commit()
     print('newww ',new_person)
-    return new_person.serialize()
+    return new_person.only_people() # solo serializa lo que quiero que serialize
