@@ -14,6 +14,7 @@ class Favorites(db.Model):
     
 
     def __init__(self, user_id,  user_id_people, user_id_planets, user_id_vehicles):
+        self.user_id= user_id
         self.user_id_people = user_id_people
         self.user_id_planets = user_id_planets
         self.user_id_vehicles = user_id_vehicles
