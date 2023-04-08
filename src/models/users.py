@@ -6,7 +6,8 @@ class User(db.Model):
     password = db.Column(db.String(80), unique=False, nullable=False)
     is_active = db.Column(db.Boolean(), unique=False, nullable=False)
     username = db.Column(db.String(150), unique=True, nullable=False)
-    people = db.relationship('People' , back_populates ='user')
+    # people = db.relationship('People' , back_populates ='user')
+    favorites = db.relationship('Favorites', back_populates='user' )
     
     def __init__(self,email,password,username):
         self.email = email

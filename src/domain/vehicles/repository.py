@@ -15,7 +15,7 @@ def get_vehicles_by_id(id):
     return vehicles.serialize()
 
 def create_vehicle(data):
-    new_vehicle = Vehicles(data['description'], data['history'], data['model'], data['year'], data['vehicles_id'] )
+    new_vehicle = Vehicles(data['passengers'], data['length'], data['model'], data['year'], data['cargo_capacity'] )
     db.session.add(new_vehicle)
     db.session.commit()
     return new_vehicle.serialize()

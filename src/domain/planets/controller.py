@@ -16,7 +16,7 @@ def create_planet(data):
     if data['description'] is None or data['description'] == '':
         return Response.response_error( 'description not valid', 400)
     
-    if data['tipes'] is None or data['tipes'] == '':
-        return Response.response_error( 'tipes not valid', 400)
+    if data['rotation_period'] is None or data['rotation_period'] == '':
+        return Response.response_error( 'rotation_period not valid', 400)
     
     return Repository.create_planet(data), 201

@@ -13,10 +13,10 @@ def get_vehicles_by_id(id):
     return vehicle
 
 def create_vehicle(data):
-    if data['description'] is None or data['description'] == '':
-        return Response.response_error( 'description not valid', 400)
+    if data['passengers'] is None or data['passengers'] == '':
+        return Response.response_error( 'passengers not valid', 400)
     
-    if data['history'] is None or data['history'] == '':
-        return Response.response_error( 'history not valid', 400)
+    if data['model'] is None or data['model'] == '':
+        return Response.response_error( 'himodelstory not valid', 400)
     
     return Repository.create_vehicle(data), 201

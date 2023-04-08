@@ -13,6 +13,7 @@ from domain.users.route import user_route
 from domain.people.route import people_route
 from domain.planets.route import planets_route
 from domain.vehicles.route import vehicles_route
+from domain.favorites.route import favorite_route
 
 #from models import Person
 
@@ -48,6 +49,8 @@ people =people_route(app)
 planets= planets_route(app)
 
 vehicles = vehicles_route(app)
+
+favorites = favorite_route(app)
 #******************************** USER
 
 #***************************************PEOPLE**************************************************************

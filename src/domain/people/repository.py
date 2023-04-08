@@ -15,7 +15,7 @@ def get_people_by_id(user_id):
     return people.serialize()
     
 def create_person(data):
-    new_person = People(data['username'], data['history'], data['description'], data['user_id'])
+    new_person = People(data['username'], data['description'], data['height'], data['mass'], data['birth_year'])
     db.session.add(new_person)
     db.session.commit()
     return new_person.serialize()

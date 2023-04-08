@@ -16,7 +16,7 @@ def all_planets_by_id(id):
     return planet.serialize()
 
 def create_planet(data):
-    new_planet= Planets(data['description'], data['history'], data['tipes'], data['people_id'] )
+    new_planet= Planets(data['description'], data['diameter'], data['climate'], data['terrain'] ,data['rotation_period'] )
     db.session.add(new_planet)
     db.session.commit()
     return new_planet.serialize()

@@ -17,9 +17,9 @@ def create_person(data):
     if data['username'] is None or data['username'] == '':
         return Response.response_error('username require', 400)
     
-    person = UserController.get_user_by_id(data['user_id'])
+    # person = UserController.get_user_by_id(data['user_id'])
 
-    if person is None:
-        return Response.response_error('user no valid', 400)
+    # if person is None:
+    #     return Response.response_error('user no valid', 400)
     
     return Repository.create_person(data)

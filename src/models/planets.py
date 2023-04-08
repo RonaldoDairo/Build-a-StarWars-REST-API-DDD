@@ -3,25 +3,30 @@ from models.db import db
 class Planets(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     description = db.Column(db.String(200),unique=False, nullable=False)
-    history =db.Column(db.String(250), unique=False, nullable = False)
-    tipes = db.Column(db.String(250), unique=False, nullable = False)
-    people_id= db.Column(db.Integer)
+    diameter =db.Column(db.Integer, unique=False, nullable = False)
+    climate = db.Column(db.String(250), unique=False, nullable = False)
+    terrain =db.Column(db.String(250), unique=False, nullable = False)
+    rotation_period =db.Column(db.Integer, unique=False, nullable = False)
+    # people_id= db.Column(db.Integer)
     # db.ForeignKey('people.id')
     # people = db.relationship('People', back_populates='planets')
 
-    def __init__(self, description, history, tipes, people_id ):
+    def __init__(self, description, diameter, climate, terrain, rotation_period):
         self.description= description
-        self.history = history
-        self.tipes = tipes
-        self.people_id = people_id
+        self.diameter = diameter
+        self.climate = climate
+        self.terrain = terrain
+        self.rotation_period = rotation_period
+        # self.people_id = people_id
         
     def serialize(self):
         return{ 
             "id": self.id,
             "description": self.description,
-            "history": self.history,
-            "tipes" : self.tipes,
-            "people_id" : self.people_id,
+            "diameter": self.diameter,
+            "climate" : self.climate,
+            "terrain" : self.terrain,
+            "rotation_period" : self.rotation_period
             # "user": self.people.serialize()
         }
     def serialize_populate(self):
