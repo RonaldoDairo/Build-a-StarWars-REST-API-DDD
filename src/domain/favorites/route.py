@@ -16,7 +16,10 @@ def favorite_route(app):
         return jsonify(new_person), 201
     @app.route('/favorites/people/<int:id>', methods=['DELETE'])
     def delete_favorite_person(id):
+
         return Controller.Delete_by_id_favorite_person(id)
+
+        
     
     @app.route('/favorites/planets', methods=['POST'])
     def create_favorite_planet():
@@ -24,6 +27,11 @@ def favorite_route(app):
         new_planet =Controller.create_favorite_planet(body)
         print('****person*',new_planet)
         return jsonify(new_planet), 201
+    
+    @app.route('/favorites/planets/<int:id>', methods=['DELETE'])
+    def delete_favorite_planet(id):
+        
+        return Controller.Delete_by_id_favorite_planet(id)
 
     @app.route('/favorites/vehicles', methods=['POST'])
     def create_favorite_vehicle():
@@ -31,3 +39,8 @@ def favorite_route(app):
         new_vehicle =Controller.create_favorite_vehicle(body)
         print('****person*',new_vehicle)
         return jsonify(new_vehicle), 201
+    
+    @app.route('/favorites/vehicles/<int:id>', methods=['DELETE'])
+    def delete_favorite_vehicle(id):
+        
+        return Controller.Delete_by_id_favorite_vehicle(id)
