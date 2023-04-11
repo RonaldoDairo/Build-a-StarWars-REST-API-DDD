@@ -16,6 +16,11 @@ def create_favorite_person(data):
     # return new_person.serialize() 
     return new_person.only_people() # solo serializa lo que quiero que serialize pero igual no influye
     #en lo que imprime realmente.
+def Delete_by_id_favorite_person(user_id):
+    people =  Favorites.query.get(user_id)
+    if people is None:
+        return people
+    return people.only_people()
 
 def create_favorite_planet(data):
     new_planet = Favorites(data['user_id'],data['user_id_people'], data['user_id_planets'], data['user_id_vehicles'])

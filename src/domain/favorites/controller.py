@@ -11,6 +11,14 @@ def create_favorite_person(data):
 
     return Repository.create_favorite_person(data)
 
+def Delete_by_id_favorite_person(user_id):
+    people = Repository.Delete_by_id_favorite_person(user_id)
+    if people is None:
+        return Response.response_error('user no found', 404)
+    return people
+
+
+
 
 def create_favorite_planet(data):
     # if data['user_id_people'] is None or data['user_id_people'] == '':

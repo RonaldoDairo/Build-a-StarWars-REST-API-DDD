@@ -14,7 +14,9 @@ def favorite_route(app):
         new_person =Controller.create_favorite_person(body)
         print('****person*',new_person)
         return jsonify(new_person), 201
-    
+    @app.route('/favorites/people/<int:id>', methods=['DELETE'])
+    def delete_favorite_person(id):
+        return Controller.Delete_by_id_favorite_person(id)
     
     @app.route('/favorites/planets', methods=['POST'])
     def create_favorite_planet():
