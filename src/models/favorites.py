@@ -27,11 +27,25 @@ class Favorites(db.Model):
         "user_id_planets" : self.user_id_planets,
         "user_id_vehicles" : self.user_id_vehicles,
         }
+
     def only_people(self):
         return{
         "id" : self.id,
         "user_id_people" : self.user_id_people,
         }
+
+    def only_planet(self):
+        return{
+        "id" : self.id,
+        "user_id_planets" : self.user_id_planets,
+        }
+
+    def only_vehicle(self):
+        return{
+        "id" : self.id,
+        "user_id_vehicles" : self.user_id_vehicles,
+        }
+    
     
 
         

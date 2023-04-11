@@ -14,3 +14,18 @@ def favorite_route(app):
         new_person =Controller.create_favorite_person(body)
         print('****person*',new_person)
         return jsonify(new_person), 201
+    
+    
+    @app.route('/favorites/planets', methods=['POST'])
+    def create_favorite_planet():
+        body = request.get_json()
+        new_planet =Controller.create_favorite_planet(body)
+        print('****person*',new_planet)
+        return jsonify(new_planet), 201
+
+    @app.route('/favorites/vehicles', methods=['POST'])
+    def create_favorite_vehicle():
+        body = request.get_json()
+        new_vehicle =Controller.create_favorite_vehicle(body)
+        print('****person*',new_vehicle)
+        return jsonify(new_vehicle), 201

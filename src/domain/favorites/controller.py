@@ -10,3 +10,16 @@ def create_favorite_person(data):
     #     return Response.response_error('username require', 400)
 
     return Repository.create_favorite_person(data)
+
+
+def create_favorite_planet(data):
+    # if data['user_id_people'] is None or data['user_id_people'] == '':
+    #     return Response.response_error('username require', 400)
+
+    return Repository.create_favorite_planet(data)
+
+def create_favorite_vehicle(data):
+    # if data['user_id_people'] is None or data['user_id_people'] == '':
+    #     return Response.response_error('username require', 400)
+
+    return Repository.create_favorite_vehicle(data)
