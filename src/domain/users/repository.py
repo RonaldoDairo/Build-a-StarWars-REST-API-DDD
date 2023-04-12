@@ -5,7 +5,6 @@ def get_all_users():
     # another form to do it 
     # serialize_all_user = [user.serialize() for user in all_user]
     serialize_all_user = list(map(lambda user : user.serialize(), all_user))
-    print(all_user)
     return serialize_all_user
 
 def get_user_by_id(user_id):

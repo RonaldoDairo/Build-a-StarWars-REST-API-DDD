@@ -8,6 +8,7 @@ def people_route(app):
     def get_all_people():
         return Controller.get_all_people()
 
+
     # para obtener informacion por id , solo exite para obtenes datos
     # en concreto id y string
     @app.route('/people/<int:id>', methods=['GET'])
