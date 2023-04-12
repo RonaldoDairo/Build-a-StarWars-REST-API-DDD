@@ -16,7 +16,7 @@ def create_favorite_person(data):
     db.session.commit()
     print('newww ',new_person)
     # return new_person.serialize() 
-    return new_person.only_people() # solo serializa lo que quiero que serialize pero igual no influye
+    return new_person.serialize() # solo serializa lo que quiero que serialize pero igual no influye
     #en lo que imprime realmente.
 def Delete_by_id_favorite_person(id):
     person = Favorites.query.get(id)

@@ -7,6 +7,7 @@ class Vehicles(db.Model):
     model= db.Column(db.String(200), unique=False, nullable = False)
     year = db.Column(db.String(200), unique=False, nullable= False) 
     cargo_capacity = db.Column(db.String(200),unique=False, nullable= False)
+    favorites = db.relationship('Favorites')
 
     def __init__(self, passengers, length, model, year, cargo_capacity):
         self.passengers = passengers

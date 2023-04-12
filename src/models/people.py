@@ -1,5 +1,5 @@
 from models.db import db 
-    
+
 class People(db.Model):
     id= db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(150), unique=True, nullable=False)
@@ -10,6 +10,11 @@ class People(db.Model):
     # user_id= db.Column(db.Integer, db.ForeignKey('user.id'))
     # user = db.relationship('User', back_populates='people')
     # planets = db.relationship('Planets', back_populates='people')
+    # FALTARIA CAMPO FAVORITE QUE BUSCARIA LA TABLA FAVORITE (BACKPOPULATE)
+    favorites = db.relationship('Favorites')
+    # planets_id = db.Column(db.Integer, db.ForeignKey('planets.id'))
+    # planets= db.relationship('Planets') 
+
    
     def __init__(self, username, description, height, mass, birth_year ):
         self.username = username

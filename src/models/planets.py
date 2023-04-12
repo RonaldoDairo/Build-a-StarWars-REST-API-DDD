@@ -10,6 +10,10 @@ class Planets(db.Model):
     # people_id= db.Column(db.Integer)
     # db.ForeignKey('people.id')
     # people = db.relationship('People', back_populates='planets')
+    favorites = db.relationship('Favorites')
+    # people_id = db.Column(db.Integer, db.ForeignKey('people.id'))
+    # people= db.relationship('People')
+    
 
     def __init__(self, description, diameter, climate, terrain, rotation_period):
         self.description= description
